@@ -237,6 +237,19 @@ exports.find = function(id) {
   return null;
 };
 
+exports.pickTwo = function() {
+  var randomIndex1 = Math.floor(Math.random()* pooches.length);
+  var firstPooch = pooches[randomIndex1];
+  var secondPooch;
+  do
+  {
+    var randomIndex2 = Math.floor(Math.random()* pooches.length);
+    secondPooch = pooches[randomIndex2];
+  } while(firstPooch.id === secondPooch.id);
+  
+  return [firstPooch, secondPooch];
+};
+
 exports.incrementDonation = function(dog_id, amount) {
   var dog = exports.find(dog_id);
   var int_amount = parseInt(amount);
@@ -249,5 +262,11 @@ exports.incrementDonation = function(dog_id, amount) {
   if(dog && !isNaN(int_amount)) {
     dog.donations += int_amount;
   }
+  
+  
+  console.log("----Total for " + dog.name + "----");
+  console.log(dog.donations);
+  console.log("------------");
+
 };
 

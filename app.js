@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var matchup = require('./routes/matchup');
 var http = require('http');
 var path = require('path');
 
@@ -39,6 +40,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/matchup', matchup.view);
+app.post('/matchup/winner/:id', matchup.winner);
 app.get('/signup', user.signup);
 app.post('/signup', user.create);
 app.post('/signin', user.signin);
